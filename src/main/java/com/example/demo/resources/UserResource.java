@@ -1,5 +1,6 @@
 package com.example.demo.resources;
-
+//segundo a ser implementado
+//para cada entidade criada , será craida uma classe resource para disponibilizar os recursos , os endpoints
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.servicos.UsuarioServico;
 
-@RestController
-@RequestMapping(value="/usuario")
+
+@RestController//informando que é um controlador
+@RequestMapping(value="/usuario")//endereco do recurso  
 public class UserResource {
 	
 	@Autowired//Spring fazer injeção de dependencia
@@ -21,8 +23,8 @@ public class UserResource {
 	
 	
 	@GetMapping//requisição do tipo Get
-	public ResponseEntity<List<Usuario>> retornarUsuario(){
-		List<Usuario> list = servico.retornarUsuario();
+	public ResponseEntity<List<Usuario>> retornarUsuario(){//ResponseEntity é um tipo especifico no springboot que retorna 
+		List<Usuario> list = servico.retornarUsuario();   //resposta de requisição web
 		
 		return ResponseEntity.ok().body(list);
 	}

@@ -1,5 +1,5 @@
 package com.example.demo.entidades;
-
+//primeira coisa a criar são as entidades
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Usuario implements Serializable {
+public class Usuario implements Serializable {//serializable é uma interface que serve para trafegar dados do objeto na rede
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -21,11 +21,12 @@ public class Usuario implements Serializable {
 	private String telefone;
 	private String senha;
 	
+	//por estar usando framework é obrigado a usar construtor vazio
 	public Usuario() {
 		
 	}
 	
-
+	//construtor colocado por conveniencia
 	public Usuario(Long id, String nome, String email, String telefone, String senha) {
 		super();
 		this.id = id;
@@ -85,7 +86,7 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-
+	//pode ser colocado qualquer campo para comparar , depende da necessidade
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
