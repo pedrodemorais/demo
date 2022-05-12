@@ -8,13 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
+//mapeamento do jpa 
 @Entity
 public class Usuario implements Serializable {//serializable é uma interface que serve para trafegar dados do objeto na rede
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id//falando para o jpa qual atributo será a chave primaria no banco
+	@GeneratedValue(strategy=GenerationType.IDENTITY)//falando para o jpa que será autoincremento no banco
 	private Long id;
 	private String nome;
 	private String email;
