@@ -1,5 +1,5 @@
+//primeiro cria-se as entidades
 package com.example.demo.entidades;
-//primeira coisa a criar são as entidades
 import java.io.Serializable;
 import java.util.Objects;
 

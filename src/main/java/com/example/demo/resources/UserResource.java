@@ -29,8 +29,8 @@ public class UserResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Usuario> retornarPorID(@PathVariable Long id){
+	@GetMapping(value = "/{id}")//informando que vai id no get
+	public ResponseEntity<Usuario> retornarPorID(@PathVariable Long id){//@PathVariable fala para o spring que vai receber o ID por parametro
 		Usuario usuario = servico.retornarPorId(id);
 		return ResponseEntity.ok().body(usuario);
 	}
