@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entidades.Usuario;
+import com.example.demo.entidades.Cliente;
 import com.example.demo.servicos.UsuarioServico;
 
 
@@ -23,15 +23,15 @@ public class UserResource {
 	
 	
 	@GetMapping//requisição do tipo Get
-	public ResponseEntity<List<Usuario>> retornarUsuario(){//ResponseEntity é um tipo especifico no springboot que retorna 
-		List<Usuario> list = servico.retornarUsuario();   //resposta de requisição web
+	public ResponseEntity<List<Cliente>> retornarUsuario(){//ResponseEntity é um tipo especifico no springboot que retorna 
+		List<Cliente> list = servico.retornarUsuario();   //resposta de requisição web
 		
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")//informando que vai id no get
-	public ResponseEntity<Usuario> retornarPorID(@PathVariable Long id){//@PathVariable fala para o spring que vai receber o ID por parametro
-		Usuario usuario = servico.retornarPorId(id);
+	public ResponseEntity<Cliente> retornarPorID(@PathVariable Long id){//@PathVariable fala para o spring que vai receber o ID por parametro
+		Cliente usuario = servico.retornarPorId(id);
 		return ResponseEntity.ok().body(usuario);
 	}
 

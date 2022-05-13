@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entidades.Usuario;
+import com.example.demo.entidades.Cliente;
 import com.example.demo.repositories.UserRepository;
 
 @Service
@@ -16,13 +16,13 @@ public class UsuarioServico {//Usuario na camada serviço dependerá do usuario 
 	private UserRepository repository;
 	
 	//metodo criado para trazer todos usuarios 
-	public List<Usuario> retornarUsuario(){
+	public List<Cliente> retornarUsuario(){
 		
 		return repository.findAll();
 	}
 	
-	public Usuario retornarPorId(Long id) {
-		Optional<Usuario> obj = repository.findById(id);
+	public Cliente retornarPorId(Long id) {
+		Optional<Cliente> obj = repository.findById(id);
 		return obj.get();//o get vai retornar um obj Usuario
 		
 	}
