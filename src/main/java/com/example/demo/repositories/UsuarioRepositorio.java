@@ -7,6 +7,6 @@ import com.example.demo.entidades.Cliente;
 
 //os repositories serão interfaces extendendo o JpaRepository passando como parametro a entidade e o tipo
 //da chave primaria que no caso é long
-public interface UserRepository extends JpaRepository<Cliente, Long> {
+public interface UsuarioRepositorio extends JpaRepository<Cliente, Long> {
 
 }

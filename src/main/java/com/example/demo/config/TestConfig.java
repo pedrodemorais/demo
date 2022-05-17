@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.example.demo.entidades.Cliente;
-import com.example.demo.repositories.UserRepository;
+import com.example.demo.repositories.UsuarioRepositorio;
 
 
 @Configuration //annotation @Configuration do sppring avisando que é uma classe de configuração
@@ -22,7 +22,7 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 	
 	
 	@Autowired//annotation para que o spring boot resolva a dependencia e atribua userRepository a TestConfig
-	private UserRepository userRepository;//declarando uma dependencia
+	private UsuarioRepositorio userRepository;//declarando uma dependencia
 
 	@Override
 	public void run(String... args) throws Exception {

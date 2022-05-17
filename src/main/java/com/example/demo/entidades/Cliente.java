@@ -19,15 +19,12 @@ public class Cliente implements Serializable {//serializable é uma interface qu
 	@Id//falando para o jpa qual atributo será a chave primaria no banco
 	@GeneratedValue(strategy=GenerationType.IDENTITY)//falando para o jpa que o id será autoincremento no banco
 	private Long id;
-	
-
-
 	private String nome;
 	private String email;
 	private String telefone;
 	private String senha;
 	
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente")//um para muitos
 	private List <Pedido> pedido = new ArrayList<>();
 	
 	//por estar usando framework é obrigado a usar construtor vazio

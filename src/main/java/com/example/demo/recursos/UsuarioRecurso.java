@@ -1,4 +1,4 @@
-package com.example.demo.resources;
+package com.example.demo.recursos;
 //segundo a ser implementado
 //para cada entidade criada , será craida uma classe resource para disponibilizar os recursos , os endpoints
 import java.util.List;
@@ -16,7 +16,7 @@ import com.example.demo.servicos.UsuarioServico;
 
 @RestController//informando que é um controlador
 @RequestMapping(value="/usuario")//endereco do recurso  
-public class UserResource {
+public class UsuarioRecurso {
 	
 	@Autowired//Spring fazer injeção de dependencia
 	private UsuarioServico servico;
