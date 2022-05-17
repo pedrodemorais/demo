@@ -7,22 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Cliente;
-import com.example.demo.repositories.UsuarioRepositorio;
+import com.example.demo.repositorios.UsuarioRepositorio;
 
-@Service
+@Service//registrando como um componente do spring 
 public class UsuarioServico {//Usuario na camada serviço dependerá do usuario na camada do repositorio
 	
 	@Autowired //injeção de dependencia
-	private UsuarioRepositorio repository;
+	private UsuarioRepositorio usuarioRepositorio;
 	
 	//metodo criado para trazer todos usuarios 
 	public List<Cliente> retornarUsuario(){
-		
-		return repository.findAll();
+		return usuarioRepositorio.findAll();
 	}
 	
+	//metodo que traz um cliente por id
 	public Cliente retornarPorId(Long id) {
-		Optional<Cliente> obj = repository.findById(id);
+		Optional<Cliente> obj = usuarioRepositorio.findById(id);
 		return obj.get();//o get vai retornar um obj Usuario
 		
 	}

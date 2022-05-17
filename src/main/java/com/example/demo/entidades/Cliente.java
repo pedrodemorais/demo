@@ -10,9 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 //mapeamento do jpa 
 @Entity
+@Table(name="TB_CLIENTE")//alterando o nome da tabela 
 public class Cliente implements Serializable {//serializable é uma interface que serve para trafegar dados do objeto na rede
 	private static final long serialVersionUID = 1L;
 	

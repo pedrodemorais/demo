@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.example.demo.entidades.Cliente;
-import com.example.demo.repositories.UsuarioRepositorio;
+import com.example.demo.repositorios.UsuarioRepositorio;
 
 
 @Configuration //annotation @Configuration do sppring avisando que é uma classe de configuração
