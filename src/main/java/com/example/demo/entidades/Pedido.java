@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tb_pedido")//renomeando a tabela no banco de dados
 public class Pedido  implements Serializable {
@@ -19,9 +21,10 @@ public class Pedido  implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private Instant momento;
 	
+	@JsonIgnore
 	@ManyToOne//muitos para um
 	@JoinColumn(name="client_id")
 	private Cliente cliente;
@@ -32,7 +35,7 @@ public class Pedido  implements Serializable {
 	}
 
 
-	public Pedido(long id, Instant momento, Cliente cliente) {
+	public Pedido(Long id, Instant momento, Cliente cliente) {
 		super();
 		this.id = id;
 		this.momento = momento;
@@ -40,12 +43,12 @@ public class Pedido  implements Serializable {
 	}
 
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

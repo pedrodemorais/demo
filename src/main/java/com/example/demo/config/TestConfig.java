@@ -2,6 +2,7 @@
 //para fazer algumas configurações e popular o banco de dados com alguns objetos
 package com.example.demo.config;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.example.demo.entidades.Cliente;
+import com.example.demo.entidades.Pedido;
+import com.example.demo.repositorios.PedidoRepositorio;
 import com.example.demo.repositorios.UsuarioRepositorio;
 
 
@@ -22,7 +25,10 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 	
 	
 	@Autowired//annotation para que o spring boot resolva a dependencia e atribua userRepository a TestConfig
-	private UsuarioRepositorio userRepository;//declarando uma dependencia
+	private UsuarioRepositorio userRepositorio;//declarando uma dependencia
+	
+	@Autowired
+	private PedidoRepositorio pedidoRepositorio;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -31,8 +37,16 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 		Cliente u2 = new Cliente(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		Cliente u3 = new Cliente(null, "dorim", "dorim@gmail.com", "66666666666", "123456");
 		
+		Pedido pedido = new Pedido(null, Instant.parse("2019-11-11T23:05:10Z"), u3);
+		Pedido pedido2 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"), u2);
+		Pedido pedido3 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"), u2);
+		Pedido pedido4 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"), u2);
+		
+		
+		
 		//chamando a classe userRepository com o metodo saveAll criando um array de objeto para salvar no banco
-		userRepository.saveAll(Arrays.asList(u1,u2,u3));
+		userRepositorio.saveAll(Arrays.asList(u1,u2,u3));
+		pedidoRepositorio.saveAll(Arrays.asList(pedido, pedido2,pedido3,pedido4));
 	}
 	
 

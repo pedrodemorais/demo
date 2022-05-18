@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //mapeamento do jpa 
 @Entity
 @Table(name="TB_CLIENTE")//alterando o nome da tabela 
@@ -25,6 +27,7 @@ public class Cliente implements Serializable {//serializable é uma interface qu
 	private String email;
 	private String telefone;
 	private String senha;
+	
 	
 	@OneToMany(mappedBy = "cliente")//um para muitos
 	private List <Pedido> pedido = new ArrayList<>();
