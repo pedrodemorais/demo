@@ -28,6 +28,7 @@ public class Pedido  implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'",timezone="GMT")
 	private Instant momento;
 	
+	//dizendo exmplicitamente que esta sendo gravado no banco um numero inteiro
 	private Integer statusDoPedido;
 	
 	@JsonIgnore
