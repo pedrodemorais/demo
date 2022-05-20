@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.example.demo.entidades.Cliente;
 import com.example.demo.entidades.Pedido;
+import com.example.demo.entidades.enums.StatusDoPedido;
 import com.example.demo.repositorios.PedidoRepositorio;
 import com.example.demo.repositorios.UsuarioRepositorio;
 
@@ -37,10 +38,10 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 		Cliente u2 = new Cliente(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		Cliente u3 = new Cliente(null, "dorim", "dorim@gmail.com", "66666666666", "123456");
 		
-		Pedido pedido = new Pedido(null, Instant.parse("2019-11-11T23:05:10Z"), u3);
-		Pedido pedido2 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"), u2);
-		Pedido pedido3 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"), u2);
-		Pedido pedido4 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"), u2);
+		Pedido pedido = new Pedido(null, Instant.parse("2019-11-11T23:05:10Z"), StatusDoPedido.PAGO, u3);
+		Pedido pedido2 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"),StatusDoPedido.ENVIADO, u2);
+		Pedido pedido3 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"),StatusDoPedido.ENVIADO, u2);
+		Pedido pedido4 = new Pedido(null, Instant.parse("2019-09-11T23:05:10Z"),StatusDoPedido.CANCELADO, u2);
 		
 		
 		

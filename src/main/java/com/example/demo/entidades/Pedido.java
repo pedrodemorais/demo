@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.example.demo.entidades.enums.StatusDoPedido;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -22,7 +24,11 @@ public class Pedido  implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'",timezone="GMT")
 	private Instant momento;
+	
+	private Integer statusDoPedido;
 	
 	@JsonIgnore
 	@ManyToOne//muitos para um
@@ -35,10 +41,11 @@ public class Pedido  implements Serializable {
 	}
 
 
-	public Pedido(Long id, Instant momento, Cliente cliente) {
+	public Pedido(Long id, Instant momento,StatusDoPedido statusDoPedido, Cliente cliente) {
 		super();
 		this.id = id;
 		this.momento = momento;
+		setStatusDoPedido(statusDoPedido);
 		this.cliente = cliente;
 	}
 
@@ -61,7 +68,17 @@ public class Pedido  implements Serializable {
 	public void setMomento(Instant momento) {
 		this.momento = momento;
 	}
+	
+	public StatusDoPedido getStatusDoPedido() {
+		return StatusDoPedido.valueOf( statusDoPedido);
+	}
 
+
+	public void setStatusDoPedido(StatusDoPedido statusDoPedido) {
+		if(statusDoPedido!=null) {
+		this.statusDoPedido = statusDoPedido.getCodigo();
+		}
+	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -90,6 +107,9 @@ public class Pedido  implements Serializable {
 		Pedido other = (Pedido) obj;
 		return id == other.id;
 	}
+
+
+	
 	
 	
 	
