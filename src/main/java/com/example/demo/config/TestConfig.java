@@ -10,9 +10,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.example.demo.entidades.Categoria;
 import com.example.demo.entidades.Cliente;
 import com.example.demo.entidades.Pedido;
 import com.example.demo.entidades.enums.StatusDoPedido;
+import com.example.demo.repositorios.CategoriaRepositorio;
 import com.example.demo.repositorios.PedidoRepositorio;
 import com.example.demo.repositorios.UsuarioRepositorio;
 
@@ -30,10 +32,18 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 	
 	@Autowired
 	private PedidoRepositorio pedidoRepositorio;
+	
+	@Autowired
+	private CategoriaRepositorio categoriaRepositorio;
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		Categoria cat = new Categoria(null, "Informatica");
+		Categoria cat1 = new Categoria(null, "Seguranca");
+		Categoria cat2 = new Categoria(null, "Eletronica");
+		
 		Cliente u1 = new Cliente(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
 		Cliente u2 = new Cliente(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		Cliente u3 = new Cliente(null, "dorim", "dorim@gmail.com", "66666666666", "123456");
@@ -48,6 +58,8 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 		//chamando a classe userRepository com o metodo saveAll criando um array de objeto para salvar no banco
 		userRepositorio.saveAll(Arrays.asList(u1,u2,u3));
 		pedidoRepositorio.saveAll(Arrays.asList(pedido, pedido2,pedido3,pedido4));
+		categoriaRepositorio.saveAll(Arrays.asList(cat,cat1,cat2));
+		
 	}
 	
 
