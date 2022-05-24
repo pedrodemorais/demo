@@ -1,31 +1,36 @@
 package com.example.demo.entidades;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name ="Categoria")
-
-public class Categoria implements Serializable{
+@Table(name = "Categoria")
+public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
-	
+
+	@Transient
+	private Set<Produto> produtos = new HashSet<>();
+
 	public Categoria() {
-		
+
 	}
 
 	public Categoria(Long id, String name) {
+		super();
 		this.id = id;
 		this.name = name;
 	}
@@ -46,6 +51,10 @@ public class Categoria implements Serializable{
 		this.name = name;
 	}
 
+	public Set<Produto> getProdutos() {
+		return produtos;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -62,13 +71,5 @@ public class Categoria implements Serializable{
 		Categoria other = (Categoria) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

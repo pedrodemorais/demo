@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 //mapeamento do jpa 
 @Entity
 @Table(name="TB_CLIENTE")//alterando o nome da tabela 

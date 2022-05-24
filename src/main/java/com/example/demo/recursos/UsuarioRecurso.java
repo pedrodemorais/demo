@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entidades.Cliente;
-import com.example.demo.servicos.UsuarioServico;
+import com.example.demo.servicos.ClienteServico;
 
 
 @RestController//informando que é um controlador
@@ -19,7 +19,7 @@ import com.example.demo.servicos.UsuarioServico;
 public class UsuarioRecurso {
 	
 	@Autowired//Spring fazer injeção de dependencia
-	private UsuarioServico servico;
+	private ClienteServico servico;
 	
 	
 	@GetMapping//requisição do tipo Get

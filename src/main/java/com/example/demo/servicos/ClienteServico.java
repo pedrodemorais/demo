@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Cliente;
-import com.example.demo.repositorios.UsuarioRepositorio;
+import com.example.demo.repositorios.ClienteRepositorio;
 
 @Service//registrando como um componente do spring 
-public class UsuarioServico {//Usuario na camada serviço dependerá do usuario na camada do repositorio
+public class ClienteServico {//Usuario na camada serviço dependerá do usuario na camada do repositorio
 	
 	@Autowired //injeção de dependencia
-	private UsuarioRepositorio usuarioRepositorio;
+	private ClienteRepositorio usuarioRepositorio;
 	
 	//metodo criado para trazer todos usuarios 
 	public List<Cliente> retornarUsuario(){
