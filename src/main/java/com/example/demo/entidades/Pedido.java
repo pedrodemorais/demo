@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="tb_pedido")//renomeando a tabela no banco de dados
+@Table(name="pedido")//renomeando a tabela no banco de dados
 public class Pedido  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

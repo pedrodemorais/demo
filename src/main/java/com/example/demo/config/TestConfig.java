@@ -46,15 +46,32 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Categoria cat = new Categoria(null, "Informatica");
-		Categoria cat1 = new Categoria(null, "Seguranca");
-	    Categoria cat2 = new Categoria(null, "Eletronica");
+		Categoria cat1= new Categoria(null, "Eletronicos");
+		Categoria cat2 = new Categoria(null, "Livros");
+	    Categoria cat3 = new Categoria(null, "Computadores");
 		
 		Produto p1 = new Produto(null, "O senhor dos Aneis", "Lorem ipsum dolor sit amet, consectetur.", 90.5, ""); 
 		Produto p2 = new Produto(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, ""); 
 		Produto p3 = new Produto(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, ""); 
 		Produto p4 = new Produto(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, ""); 
 		Produto p5 = new Produto(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+		
+		//chamando a classe userRepository com o metodo saveAll criando um array de objeto 
+		//para salvar no banco
+		categoriaRepositorio.saveAll(Arrays.asList(cat1,cat2,cat3));
+		produtoRepositorio.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		p1.getCategorias().add(cat2);
+		p2.getCategorias().add(cat1);
+		p2.getCategorias().add(cat3);
+		p3.getCategorias().add(cat3);
+		p4.getCategorias().add(cat3);
+		p5.getCategorias().add(cat2);
+		
+		produtoRepositorio.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		
+		
 		
 		Cliente u1 = new Cliente(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
 		Cliente u2 = new Cliente(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
@@ -67,11 +84,10 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 		
 		
 		
-		//chamando a classe userRepository com o metodo saveAll criando um array de objeto para salvar no banco
+		//chamando a classe userRepository com o metodo saveAll criando um array de objeto 
+		//para salvar no banco
 		userRepositorio.saveAll(Arrays.asList(u1,u2,u3));
 		pedidoRepositorio.saveAll(Arrays.asList(pedido, pedido2,pedido3,pedido4));
-		categoriaRepositorio.saveAll(Arrays.asList(cat,cat1,cat2));
-		produtoRepositorio.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
 	}
 	

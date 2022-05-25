@@ -9,24 +9,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
-@Table(name="Produto")
+@Table(name="produto")
 public class Produto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idProduto ;
+	private Long id;
 	
 	private String nome;
 	private String descricao;
 	private Double preco;
 	private String imgUrl;
 	
-	@Transient
+	//criando tabela auxiliar da associação de muitos para muitos
+	@ManyToMany
+	
+	//name = escolhendo o nome da tabela
+	//joinColumns = @JoinColumn(name="produto_id") --- atribuindo a chave estrangeira referente a tabela de PRODUTO
+	//inverseJoinColumns = @JoinColumn(name = "categoria_id") -- Atribuindo nome da chave estrangeira da outra tabela 
+	@JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name="produto_id"),
+	inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	
 	private Set<Categoria> categorias  = new HashSet<>(); 
 	
 	public Produto() {
@@ -34,20 +44,20 @@ public class Produto implements Serializable{
 	}
 
 	//Atenção: Não coloca coleções no construtor, pois ja foi instanciada acima
-	public Produto(Long idProduto, String nome, String descricao, Double preco, String imgUrl) {
-		this.idProduto = idProduto;
+	public Produto(Long id, String nome, String descricao, Double preco, String imgUrl) {
+		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.imgUrl = imgUrl;
 	}
 
-	public Long getIdProduto() {
-		return idProduto;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
+	public void setIdProduto(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -88,7 +98,7 @@ public class Produto implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idProduto);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -100,7 +110,7 @@ public class Produto implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		return Objects.equals(idProduto, other.idProduto);
+		return Objects.equals(id, other.id);
 	}
 	
 	
