@@ -12,13 +12,15 @@ import org.springframework.context.annotation.Profile;
 
 import com.example.demo.entidades.Categoria;
 import com.example.demo.entidades.Cliente;
+import com.example.demo.entidades.ItemPedido;
 import com.example.demo.entidades.Pedido;
 import com.example.demo.entidades.Produto;
 import com.example.demo.entidades.enums.StatusDoPedido;
 import com.example.demo.repositorios.CategoriaRepositorio;
+import com.example.demo.repositorios.ClienteRepositorio;
+import com.example.demo.repositorios.ItemPedidoRepositorio;
 import com.example.demo.repositorios.PedidoRepositorio;
 import com.example.demo.repositorios.ProdutoRepositorio;
-import com.example.demo.repositorios.ClienteRepositorio;
 
 
 @Configuration //annotation @Configuration do sppring avisando que é uma classe de configuração
@@ -31,17 +33,19 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 	@Autowired
 	private CategoriaRepositorio categoriaRepositorio;
 	
-	
 	@Autowired//annotation para que o spring boot resolva a dependencia e atribua userRepository a TestConfig
 	private ClienteRepositorio userRepositorio;//declarando uma dependencia
 	
 	@Autowired
 	private PedidoRepositorio pedidoRepositorio;
 	
-	
-	
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
+	
+	@Autowired
+	private ItemPedidoRepositorio itemPedidoRepositorio;
+	
+	
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
@@ -88,6 +92,13 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 		//para salvar no banco
 		userRepositorio.saveAll(Arrays.asList(u1,u2,u3));
 		pedidoRepositorio.saveAll(Arrays.asList(pedido, pedido2,pedido3,pedido4));
+		
+		ItemPedido item1 = new ItemPedido(pedido,p1,2,p1.getPreco());
+		ItemPedido item2 = new ItemPedido(pedido,p3,1,p3.getPreco());
+		ItemPedido item3 = new ItemPedido(pedido2,p3,2,p3.getPreco());
+		ItemPedido item4 = new ItemPedido(pedido3,p5,2,p5.getPreco());
+		
+		itemPedidoRepositorio.saveAll(Arrays.asList(item1,item2,item3,item4));
 		
 	}
 	

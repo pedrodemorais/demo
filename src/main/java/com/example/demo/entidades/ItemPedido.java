@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.example.demo.entidades.pk.ItemPedidoPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="itempedido")
 
@@ -15,21 +16,22 @@ public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private ItemPedidoPk id;//Classe auxiliar PK 
+	private ItemPedidoPk id = new ItemPedidoPk();//Classe auxiliar PK 
 	private Integer quantidade;
-	private Double price;
+	private Double preco;
 	
 	public ItemPedido() {
 		
 	}
 //instanciando o Item pedido passando o pedido o produto a quantidade e o preco
-	public ItemPedido(Pedido pedido, Produto produto,Integer quantidade, Double price) {
+	public ItemPedido(Pedido pedido, Produto produto,Integer quantidade, Double preco) {
 		id.setPedido(pedido);
 		id.setProduto(produto);
 		this.quantidade = quantidade;
-		this.price = price;
+		this.preco = preco;
 	}
 	
+	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
@@ -60,11 +62,11 @@ public class ItemPedido implements Serializable {
 	}
 
 	public Double getPrice() {
-		return price;
+		return preco;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setPrice(Double preco) {
+		this.preco = preco;
 	}
 
 	@Override

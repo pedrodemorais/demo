@@ -2,7 +2,9 @@ package com.example.demo.entidades;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.entidades.enums.StatusDoPedido;
@@ -31,10 +34,13 @@ public class Pedido  implements Serializable {
 	//dizendo exmplicitamente que esta sendo gravado no banco um numero inteiro
 	private Integer statusDoPedido;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne//muitos para um
-	@JoinColumn(name="client_id")
+	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
+	
+	@OneToMany(mappedBy="id.pedido")
+	private Set<ItemPedido> itensPedido = new HashSet<>();
 
 	
 	public Pedido() {
@@ -43,7 +49,6 @@ public class Pedido  implements Serializable {
 
 
 	public Pedido(Long id, Instant momento,StatusDoPedido statusDoPedido, Cliente cliente) {
-		super();
 		this.id = id;
 		this.momento = momento;
 		setStatusDoPedido(statusDoPedido);
@@ -88,6 +93,10 @@ public class Pedido  implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	public Set<ItemPedido> getItems(){
+		return itensPedido;
 	}
 
 

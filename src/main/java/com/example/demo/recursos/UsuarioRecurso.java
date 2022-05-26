@@ -1,4 +1,4 @@
-package com.example.demo.recursos;
+/*package com.example.demo.recursos;
 //segundo a ser implementado
 //para cada entidade criada , será craida uma classe resource para disponibilizar os recursos , os endpoints
 import java.util.List;
@@ -35,4 +35,4 @@ public class UsuarioRecurso {
 		return ResponseEntity.ok().body(usuario);
 	}
 
-}
+}*/
