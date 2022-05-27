@@ -115,6 +115,19 @@ public class Pedido  implements Serializable {
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
+	
+	public Double getTotalPedido() {
+		Double soma = 0.0;
+		for(ItemPedido x : itensPedido) {
+			soma+=x.getSubTotal();
+			
+		}
+		
+		return soma;
+		
+		
+		
+	}
 
 
 	@Override
