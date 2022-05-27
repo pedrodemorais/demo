@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Profile;
 import com.example.demo.entidades.Categoria;
 import com.example.demo.entidades.Cliente;
 import com.example.demo.entidades.ItemPedido;
+import com.example.demo.entidades.Pagamento;
 import com.example.demo.entidades.Pedido;
 import com.example.demo.entidades.Produto;
 import com.example.demo.entidades.enums.StatusDoPedido;
@@ -99,6 +100,10 @@ public class TestConfig implements CommandLineRunner {//implements CommandLineRu
 		ItemPedido item4 = new ItemPedido(pedido3,p5,2,p5.getPreco());
 		
 		itemPedidoRepositorio.saveAll(Arrays.asList(item1,item2,item3,item4));
+		
+		Pagamento pagto1 = new Pagamento(null, Instant.parse("2019-11-11T23:45:10Z"), pedido);
+		pedido.setPagamento(pagto1);// nesse caso que é de um para um não chama a classe do pagamento e sim do pedido
+		pedidoRepositorio.save(pedido);
 		
 	}
 	

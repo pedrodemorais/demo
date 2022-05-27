@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.example.demo.entidades.enums.StatusDoPedido;
@@ -42,6 +44,10 @@ public class Pedido  implements Serializable {
 	
 	@OneToMany(mappedBy="id.pedido")//esse id é o que está declarado em ItemPedido private ItemPedidoPk id = new ItemPedidoPk() ja o pedido é private Pedido pedido dentro de ItemPedidoPk
 	private Set<ItemPedido> itensPedido = new HashSet<>();
+	
+	@OneToOne(mappedBy = "pedido", cascade= CascadeType.ALL) //verificar o  nome do atributo dentro da classe pagamento que nesse caso é private Pedido pedido;
+	// cascade= CascadeType.ALL está mapeando para que o pedido e o pagamento tenha o mesmo id
+	private Pagamento pagamento;
 
 	
 	public Pedido() {
@@ -98,6 +104,16 @@ public class Pedido  implements Serializable {
 	
 	public Set<ItemPedido> getItems(){
 		return itensPedido;
+	}
+	
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 
 
