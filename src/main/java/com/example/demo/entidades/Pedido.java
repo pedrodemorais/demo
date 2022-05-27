@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.entidades.enums.StatusDoPedido;
+import com.example.demo.entidades.pk.ItemPedidoPk;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,7 +40,7 @@ public class Pedido  implements Serializable {
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy="id.pedido")
+	@OneToMany(mappedBy="id.pedido")//esse id é o que está declarado em ItemPedido private ItemPedidoPk id = new ItemPedidoPk() ja o pedido é private Pedido pedido dentro de ItemPedidoPk
 	private Set<ItemPedido> itensPedido = new HashSet<>();
 
 	
