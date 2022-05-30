@@ -1,15 +1,18 @@
 package com.example.demo.recursos;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.demo.entidades.Categoria;
 import com.example.demo.entidades.Cliente;
 import com.example.demo.servicos.ClienteServico;
 
@@ -19,6 +22,7 @@ public class ClienteRecurso {
 	
 	@Autowired//injeção de dependência
 	private ClienteServico clienteServico; 
+	
 	
 	@GetMapping//requisição do tipo get
 	public ResponseEntity<List <Cliente>> retornaCategoria(){
@@ -31,6 +35,16 @@ public class ClienteRecurso {
 	public ResponseEntity <Cliente> retornarPorId(@PathVariable Long id){
 		Cliente cliente = clienteServico.retornarPorId(id);
 		return ResponseEntity.ok().body(cliente);
+		
+	}
+	
+	@PostMapping
+	public ResponseEntity<Cliente> inserir (@RequestBody Cliente obj){
+		obj= clienteServico.inserir(obj);
+		URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		//comando para gerar o retorno 201
+		return ResponseEntity.created(uri).body(obj);
+		
 		
 	}
 	

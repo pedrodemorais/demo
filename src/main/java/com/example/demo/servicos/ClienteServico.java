@@ -26,5 +26,11 @@ public class ClienteServico {//Usuario na camada serviço dependerá do usuario 
 		return obj.get();//o get vai retornar um obj Usuario
 		
 	}
+	
+	public Cliente inserir(Cliente obj) {
+		return usuarioRepositorio.save(obj);
+		
+		
+	}
 
 }
