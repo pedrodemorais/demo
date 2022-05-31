@@ -13,23 +13,28 @@ import com.example.demo.repositorios.ClienteRepositorio;
 public class ClienteServico {//Usuario na camada serviço dependerá do usuario na camada do repositorio
 	
 	@Autowired //injeção de dependencia
-	private ClienteRepositorio usuarioRepositorio;
+	private ClienteRepositorio clienteRepositorio;
 	
 	//metodo criado para trazer todos usuarios 
-	public List<Cliente> retornarUsuario(){
-		return usuarioRepositorio.findAll();
+	public List<Cliente> retornarCliente(){
+		return clienteRepositorio.findAll();
 	}
 	
 	//metodo que traz um cliente por id
-	public Cliente retornarPorId(Long id) {
-		Optional<Cliente> obj = usuarioRepositorio.findById(id);
+	public Cliente retornarClientePorId(Long id) {
+		Optional<Cliente> obj = clienteRepositorio.findById(id);
 		return obj.get();//o get vai retornar um obj Usuario
 		
 	}
-	
+	//metodo insert
 	public Cliente inserir(Cliente obj) {
-		return usuarioRepositorio.save(obj);
+		return clienteRepositorio.save(obj);
 		
+		
+	}
+	//metodo delete
+	public void delete (Long id) {
+		clienteRepositorio.deleteById(id);
 		
 	}
 

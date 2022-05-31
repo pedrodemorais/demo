@@ -39,7 +39,6 @@ public class Cliente implements Serializable {//serializable é uma interface qu
 	
 	//construtor colocado por conveniencia
 	public Cliente(Long id, String nome, String email, String telefone, String senha) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
