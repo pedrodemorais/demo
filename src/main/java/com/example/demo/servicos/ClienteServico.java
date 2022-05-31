@@ -27,7 +27,7 @@ public class ClienteServico {//Usuario na camada serviço dependerá do usuario 
 		
 	}
 	//metodo insert
-	public Cliente inserir(Cliente obj) {
+	public Cliente insert(Cliente obj) {
 		return clienteRepositorio.save(obj);
 		
 		
@@ -35,6 +35,21 @@ public class ClienteServico {//Usuario na camada serviço dependerá do usuario 
 	//metodo delete
 	public void delete (Long id) {
 		clienteRepositorio.deleteById(id);
+		
+	}
+	
+	public Cliente update(Long id, Cliente obj) {
+		Cliente entidade = clienteRepositorio.getOne(id);
+		updateCliente(entidade, obj);
+		return clienteRepositorio.save(entidade);
+		
+	}
+
+	private void updateCliente(Cliente entidade, Cliente obj) {
+		entidade.setNome(obj.getNome());
+		entidade.setEmail(obj.getEmail());
+		entidade.setTelefone(obj.getTelefone());
+		
 		
 	}
 
