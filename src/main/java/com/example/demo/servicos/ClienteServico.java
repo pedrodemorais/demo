@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Cliente;
 import com.example.demo.repositorios.ClienteRepositorio;
+import com.example.demo.servicos.excecoes.RecursoNaoEncontradoExcessoes;
 
 @Service//registrando como um componente do spring 
 public class ClienteServico {//Usuario na camada serviço dependerá do usuario na camada do repositorio
@@ -23,7 +24,8 @@ public class ClienteServico {//Usuario na camada serviço dependerá do usuario 
 	//metodo que traz um cliente por id
 	public Cliente retornarClientePorId(Long id) {
 		Optional<Cliente> obj = clienteRepositorio.findById(id);
-		return obj.get();//o get vai retornar um obj Usuario
+		//return obj.get();//o get vai retornar um obj Usuario
+		return obj.orElseThrow(() -> new RecursoNaoEncontradoExcessoes(id));
 		
 	}
 	//metodo insert

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Pedido;
 import com.example.demo.repositorios.PedidoRepositorio;
+import com.example.demo.servicos.excecoes.RecursoNaoEncontradoExcessoes;
 
 @Service//registrando como um componente do spring 
 public class PedidoServico {
@@ -23,7 +24,8 @@ public class PedidoServico {
 	//metodo que traz um cliente por id
 	public Pedido retornarPorId(Long id) {
 		Optional<Pedido> obj = usuarioRepositorio.findById(id);
-		return obj.get();//o get vai retornar um obj pedido
+		//return obj.get();//o get vai retornar um obj pedido
+		return obj.orElseThrow(() -> new RecursoNaoEncontradoExcessoes(id) );
 		
 	}
 

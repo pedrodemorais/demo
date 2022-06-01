@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Categoria;
 import com.example.demo.repositorios.CategoriaRepositorio;
+import com.example.demo.servicos.excecoes.RecursoNaoEncontradoExcessoes;
 
 @Service
 
@@ -26,7 +27,8 @@ public class CategoriaServico {
 	//metodo que traz uma categoria por Id
 	public Categoria retornarPorId(Long id) {
 		Optional<Categoria> obj =categoriaRepositorio.findById(id);
-		return obj.get();
+		//return obj.get();
+		return obj.orElseThrow(() -> new RecursoNaoEncontradoExcessoes(id) );
 		
 	}
 	
