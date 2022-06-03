@@ -3,11 +3,16 @@ package com.example.demo.servicos;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Cliente;
 import com.example.demo.repositorios.ClienteRepositorio;
+import com.example.demo.servicos.excecoes.ExcessaoDeBancoDeDados;
 import com.example.demo.servicos.excecoes.RecursoNaoEncontradoExcessoes;
 
 @Service//registrando como um componente do spring 
@@ -36,14 +41,26 @@ public class ClienteServico {//Usuario na camada serviço dependerá do usuario 
 	}
 	//metodo delete
 	public void delete (Long id) {
+		try {
 		clienteRepositorio.deleteById(id);
-		
+		}catch(EmptyResultDataAccessException e) {
+			throw new RecursoNaoEncontradoExcessoes(id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new ExcessaoDeBancoDeDados(e.getMessage());
+		}
 	}
-	
+	//metodo Update
 	public Cliente update(Long id, Cliente obj) {
-		Cliente entidade = clienteRepositorio.getOne(id);
-		updateCliente(entidade, obj);
-		return clienteRepositorio.save(entidade);
+		try {
+			Cliente entidade = clienteRepositorio.getOne(id);
+			updateCliente(entidade, obj);
+			return clienteRepositorio.save(entidade);
+		}catch(EntityNotFoundException e) {
+			throw new RecursoNaoEncontradoExcessoes(e.getMessage());
+			
+		}
+		
 		
 	}
 
